@@ -1,4 +1,4 @@
-function sign = pasf_gplot(nc_name, FPS, nSpatialComponents)
+function sign = pasf_gplot(nc_name, nSpatialComponents, FPS)
 %
 % Collaborating with pasf algorithm to plot results on map into a video.
 % Running under directory of pasf.
@@ -31,7 +31,7 @@ function sign = pasf_gplot(nc_name, FPS, nSpatialComponents)
 %% DEVELOPED: R2016a
 %% FILENAME : pasf_gplot.m
 %
-    if  nargin < 2
+    if  nargin < 3
         FPS = 5; % Defalut fps value.
     else
         FPS = FPS;
@@ -52,7 +52,6 @@ function sign = pasf_gplot(nc_name, FPS, nSpatialComponents)
     t1 = datetime(datestr(sd+min(t)/24));
     t2 = datetime(datestr(sd+max(t)/24));
     dateSeq = t1:t2;
-    SeaPressure = SeaPressure(:,:,1:50); % Test
     data = double(SeaPressure);
     Z = pasf(data, nSpatialComponents); % Z is the result from PASF.
     num_fig = nSpatialComponents + 2; % Number of components plus two.
@@ -72,7 +71,7 @@ function sign = pasf_gplot(nc_name, FPS, nSpatialComponents)
     outputVideo.FrameRate = FPS; % Set FPS.
     open(outputVideo);
 
-    for i = 1:50, % Given i for date, iterate by j for component.
+    for i = 1:num_obs, % Given i for date, iterate by j for component.
     
         disp( strcat( 'Generating frame # ', num2str(i) ) );
     
