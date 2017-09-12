@@ -20,9 +20,9 @@ function sign = pasf_gplot(nc_name, nSpatialComponents, FPS)
 %   generated under the working directory.
 %
 % Examples:
-%   pasf_gplot('filename.nc', 10);
+%   pasf_gplot('filename.nc', 2, 10);
 %
-%   pasf_gplot('filename.nc') under default fps;
+%   pasf_gplot('filename.nc', 2) under default fps;
 %
 %
 %% AUTHOR   : Ruochen Liu
